@@ -1,3 +1,12 @@
+Service allows us to compare different sql queries 
+ be able to benchmark the performance of its versions.
+ Provide information:
+  * execution time in nanoseconds
+  * database version 
+  * result of explain query
+
+Database provided from [Testcontainers](https://github.com/testcontainers/testcontainers-java)
+
 **Prerequisites:**
 
 🐳 Docker version should be at least 1.6.0
@@ -11,7 +20,7 @@
 
 **API example:**
 
-POST http://{{host}}:8080/analyze
+    POST http://{{host}}:8080/analyze
 
 request:
 
