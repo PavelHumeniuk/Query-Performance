@@ -18,7 +18,7 @@ import static com.abc.performance.domain.Database.POSTGRES;
 @Component
 public class PostgresResolver implements ContainerResolver {
     private final JdbcDatabaseContainer container = new PostgreSQLContainer();
-    private final Database name = POSTGRES;
+    private final Database databaseName = POSTGRES;
     private final Lock lock = new ReentrantLock();
 
     @PostConstruct

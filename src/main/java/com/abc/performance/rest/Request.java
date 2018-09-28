@@ -6,5 +6,8 @@ import java.util.List;
 
 @Data
 class Request {
+    /**
+     * sql queries
+     */
     private List<String> queries;
 }

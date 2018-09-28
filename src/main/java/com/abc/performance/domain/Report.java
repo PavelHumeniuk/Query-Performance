@@ -7,9 +7,24 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Result {
+public class Report {
+    /**
+     * time in nanoseconds
+     */
     private long time;
+
+    /**
+     * database name
+     */
     private String database;
+
+    /**
+     * sql query
+     */
     private String query;
+
+    /**
+     * result of explain for query {@link Report#query}
+     */
     private String explain;
 }

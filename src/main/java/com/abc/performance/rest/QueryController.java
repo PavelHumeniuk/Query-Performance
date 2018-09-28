@@ -1,7 +1,7 @@
 package com.abc.performance.rest;
 
-import com.abc.performance.domain.Result;
-import com.abc.performance.service.PerformanceService;
+import com.abc.performance.domain.Report;
+import com.abc.performance.service.ContainerResolverService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,11 +13,15 @@ import java.util.List;
 @Controller
 @AllArgsConstructor
 public class QueryController {
-    private final PerformanceService service;
+    private final ContainerResolverService service;
 
+    /**
+     * @param request - {@link Request}
+     * @return report - list of report {@link Report}
+     */
     @PostMapping("/analyze")
-    public ResponseEntity<List<Result>> analyzeQuery(@RequestBody Request request) {
-        List<Result> analyze = service.analyze(request.getQueries());
+    public ResponseEntity<List<Report>> analyzeQueries(@RequestBody Request request) {
+        List<Report> analyze = service.resolve(request.getQueries());
         return ResponseEntity.ok(analyze);
     }
 }

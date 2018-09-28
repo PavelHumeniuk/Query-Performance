@@ -18,7 +18,7 @@ import static com.abc.performance.domain.Database.MARIA;
 @Component
 public class MariaDBResolver implements ContainerResolver {
     private final JdbcDatabaseContainer container = new MariaDBContainer();
-    private final Database name = MARIA;
+    private final Database databaseName = MARIA;
     private final Lock lock = new ReentrantLock();
 
     @PostConstruct

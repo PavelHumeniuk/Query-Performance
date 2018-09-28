@@ -18,7 +18,7 @@ import static com.abc.performance.domain.Database.MYSQL;
 @Component
 public class MySQLResolver implements ContainerResolver {
     private final JdbcDatabaseContainer container = new MySQLContainer();
-    private final Database name = MYSQL;
+    private final Database databaseName = MYSQL;
     private final Lock lock = new ReentrantLock();
 
     @PostConstruct

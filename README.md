@@ -3,7 +3,7 @@ Service allows us to compare different sql queries
  Provide information:
   * execution time in nanoseconds
   * database version 
-  * result of explain query
+  * report of explain query
 
 Database provided from [Testcontainers](https://github.com/testcontainers/testcontainers-java)
 
