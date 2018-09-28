@@ -19,6 +19,11 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ContainerResolverServiceImplTest {
+    private final List<String> queries = singletonList("test");
+    private final List<Report> reports = singletonList(new Report());
+    private final Lock postgresLock = new ReentrantLock();
+    private final Lock mySqlLock = new ReentrantLock();
+
     private ContainerResolverService service;
 
     @Mock
@@ -33,19 +38,14 @@ public class ContainerResolverServiceImplTest {
     @Before
     public void init() {
         service = new ContainerResolverServiceImpl(asList(mySql, postgres), performanceService);
+        when(mySql.getLock()).thenReturn(mySqlLock);
+        when(postgres.getLock()).thenReturn(postgresLock);
     }
 
     @Test
     public void shouldExecuteQueriesInAllContainers() {
-        List<String> queries = singletonList("test");
-        List<Report> reports = singletonList(new Report());
-        Lock postgresLock = new ReentrantLock();
-        Lock mySqlLock = new ReentrantLock();
-        when(mySql.getLock()).thenReturn(mySqlLock);
-        when(postgres.getLock()).thenReturn(postgresLock);
         when(performanceService.analyze(mySql, queries)).thenReturn(reports);
         when(performanceService.analyze(postgres, queries)).thenReturn(reports);
-
         List<Report> result = service.resolve(queries);
 
         assertEquals(result.size(), 2);

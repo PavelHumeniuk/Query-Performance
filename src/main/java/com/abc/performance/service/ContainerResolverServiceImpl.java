@@ -10,7 +10,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
 
-import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 
 @Log4j2
@@ -35,7 +34,7 @@ public class ContainerResolverServiceImpl implements ContainerResolverService {
         lock.lock();
         List<Report> reports;
         try {
-           reports = performanceService.analyze(container, queries);
+            reports = performanceService.analyze(container, queries);
         } finally {
             lock.unlock();
         }
