@@ -1,9 +1,10 @@
-Service allows us to compare different sql queries 
- be able to benchmark the performance of its versions.
- Provide information:
+This service allows us to compare performance of different sql queries against various databases. 
+and benchmark the performance of different queries versions.
+ 
+ Service output is as followed:
   * execution time in nanoseconds
   * database version 
-  * report of explain query
+  * report based on explain query
 
 Database provided from [Testcontainers](https://github.com/testcontainers/testcontainers-java)
 
@@ -11,7 +12,7 @@ Database provided from [Testcontainers](https://github.com/testcontainers/testco
 
 🐳 Docker version should be at least 1.6.0
  
-🐳 Docker environment should have more than 2GB free disk space
+🐳 Docker environment should have at least 2GB free disk space(this is a native framework limitation)
 
 **DB schema:**    
 
@@ -73,8 +74,8 @@ response:
     ]
     
     
-**Add new db:**
+**Developer guide to plug in a new database:**
 
-* implements com.abc.performance.container.ContainerResolver
+* implement com.abc.performance.container.ContainerResolver
 * add %DB_NAME% to com.abc.performance.domain.Database
 * add new folder %DB_NAME% with init.sql

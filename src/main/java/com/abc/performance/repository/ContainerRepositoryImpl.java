@@ -14,13 +14,18 @@ public class ContainerRepositoryImpl implements ContainerRepository {
     private final ContainerDatabaseDriver driver = new ContainerDatabaseDriver();
 
     @Override
-    public void executeQuery(String query, String jdbcUrl) {
+    public long executeQuery(String query, String jdbcUrl) {
+        long result = -1;
         try (Connection connection = driver.connect(jdbcUrl, null)) {
             Statement statement = connection.createStatement();
+            long startTime = System.nanoTime();
             statement.execute(query);
+            long endTime = System.nanoTime();
+            result = endTime - startTime;
         } catch (SQLException e) {
             log.error(e);
         }
+        return result;
     }
 
     @Override

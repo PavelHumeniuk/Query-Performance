@@ -30,14 +30,8 @@ public class PerformanceServiceImpl implements PerformanceService {
     private Report executeSingleQuery(String query, String jdbcUrl) {
         Report report = new Report();
         report.setQuery(query);
-
-        long startTime = System.nanoTime();
-        repository.executeQuery(query, jdbcUrl);
-        long endTime = System.nanoTime();
-
-        report.setTime(endTime - startTime);
+        report.setTime(repository.executeQuery(query, jdbcUrl));
         report.setExplain(repository.explainSql(query, jdbcUrl));
-
         return report;
     }
 
